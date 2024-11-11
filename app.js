@@ -9,11 +9,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Conexão com o MySQL
-
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'cimatec',
+    password: 'password',
     database: 'saep'
 });
 
@@ -23,28 +22,28 @@ db.connect((err) => {
 });
 
 // Rotas
-
-
-
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/login.html');
 });
 
 app.post('/Cadastro', (req, res) => {
-    const {email} = req.body;
-    const sql = 'INSERT INTO email (email) VALUES (?)';
-    db.query(sql, [email], (err, result) => {
-            if (err){
-                if(err.code === 'ER_DUP_ENTRY'){
-                    res.send('Email já cadastrado!');
-                } else {
-                    console.log(err);
-                    res.send('Erro ao cadastrar o email!');
+    const email = req.body.email;
+    const senha = req.body.senha;
+    const sql = 'INSERT INTO email (email, senha) VALUES (?, ?)';
+    
+    db.query(sql, [email, senha], (err, result) => {
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                res.send('Email já cadastrado!');
+            } else {
+                console.log(err);
+                res.send('Erro ao cadastrar o email!');
             }
-            res.send('Email cadastrado com sucesso!');
-        }});
-
-
+        } else {
+            // Email cadastrado com sucesso, redireciona para a home
+            res.redirect('/home.html');
+        }
+    });
 });
 
 app.listen(port, () => {

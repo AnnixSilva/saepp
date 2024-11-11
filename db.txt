@@ -3,7 +3,9 @@ USE saep;
 
 CREATE TABLE email (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255) NOT NULL UNIQUE
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha varchar(255) not null unique
 );
 
+DROP table email;
 SELECT * FROM email

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="div-main">
+        <h3>Site para cadastrar os Email - SAEP</h3>
+        <form action="/cadastro" method="post">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Digite aqui o email" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" placeholder="Digite aqui sua senha" required>
+            
+            
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="message"> </p>
+    </div>
+</body>
+</html>
